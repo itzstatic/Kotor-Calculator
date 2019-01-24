@@ -140,7 +140,7 @@ export default {
     },
     methods: {
         async opened() {
-            this.$store.commit('DISCARD_FEATS')
+            this.$store.commit(Mutations.DiscardFeats)
             const featService = await featServicePromise
 
             this.featProgressions = featService.getFeatProgressions(this.build)
@@ -150,7 +150,7 @@ export default {
             if (this.grantedFeats.length) {
                 this.youHaveBeenGrantedModal = true
                 const grantedFeatIds = this.grantedFeats.map(feat => feat.index)
-                this.$store.commit('GRANT_FEATS', grantedFeatIds)
+                this.$store.commit(Mutations.GrantFeats, grantedFeatIds)
             }
         },
         cancel() {
@@ -169,11 +169,11 @@ export default {
         },
         add(feat) {
             this.remainingFeats--
-            this.$store.commit('ADD_FEAT', this.activeFeat.index)
+            this.$store.commit(Mutations.AddFeat, this.activeFeat.index)
         },
         remove(feat) {
             this.remainingFeats++
-            this.$store.commit('REMOVE_FEAT', this.activeFeat.index)
+            this.$store.commit(Mutations.RemoveFeat, this.activeFeat.index)
         },
         tryAdd(feat) {
             if (this.canLearn(feat)) {
