@@ -28,7 +28,10 @@ export default (async() => {
 
         return progressions.map(progression => 
             progression.map(feat => ({
-                ...feat
+                name: feat.name
+                , description: feat.description
+                , icon: feat.icon
+                , index: feat.index
                 , learned: alreadyLearned(feat, build)
             })).filter(shouldListFeat)
         ).filter(progression => progression.length)

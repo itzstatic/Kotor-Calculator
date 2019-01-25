@@ -19,7 +19,10 @@ export default (async () => {
 
         return progressions.map(progression => 
             progression.map(power => ({
-                ...power
+                name: power.name
+                , description: power.description
+                , icon: power.icon
+                , index: power.index
                 , learned: build.hasLearnedPower(power.index)
             })).filter(shouldListPower)
         ).filter(shouldListProgression)
